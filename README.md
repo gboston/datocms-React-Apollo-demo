@@ -5,7 +5,7 @@
 Clone this repo
 
 ```
-git clone git@github.com:datocms/react-apollo-demo.git && cd react-apollo-blog
+git clone git@github.com:datocms/react-apollo-demo.git && cd react-apollo-demo
 ```
 
 Create a .env file with your project's read-only api token. Then run
