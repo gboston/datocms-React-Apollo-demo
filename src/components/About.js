@@ -1,6 +1,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import { Image } from "react-datocms"
 
 const authorsQuery = gql`
   query authors {
@@ -9,7 +10,17 @@ const authorsQuery = gql`
       description
       name
       avatar {
-        url
+        responsiveImage(imgixParams: { fit: crop, crop: faces, w: 300, h: 300 }) {
+          aspectRatio
+          width
+          sizes
+          srcSet
+          src
+          webpSrcSet
+          alt
+          title
+          base64
+        }
       }
     }
   }
@@ -27,10 +38,9 @@ const Authors = props => {
               {data.authors.map(author => (
                 <div className="About-author" key={author.id}>
                   <div className="About-infoHeader">
-                    <img
+                    <Image
                       className="About-img"
-                      alt={author.name}
-                      src={author.avatar.url}
+                      data={author.avatar.responsiveImage}
                     />
                     <h2>{author.name}</h2>
                   </div>

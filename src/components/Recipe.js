@@ -1,6 +1,6 @@
 import React from "react";
 import Markdown from "react-markdown";
-import Imgix from "react-imgix";
+import { Image } from "react-datocms"
 import { Link } from "react-router-dom";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
@@ -17,15 +17,38 @@ const recipeQuery = gql`
       abstract
       ingredients
       coverImage {
-        url
+        responsiveImage(imgixParams: { fit: crop, w: 1000, h: 500 }) {
+          srcSet
+          webpSrcSet
+          sizes
+          src
+          width
+          height
+          aspectRatio
+          alt
+          title
+          bgColor
+          base64
+        }
       }
       content {
         ... on TextImageBlockRecord {
           id
           __typename
           image {
-            url
-            alt
+            responsiveImage(imgixParams: { fit: crop, w: 300, h: 300 }) {
+              srcSet
+              webpSrcSet
+              sizes
+              src
+              width
+              height
+              aspectRatio
+              alt
+              title
+              bgColor
+              base64
+            }
           }
           text
         }
@@ -59,11 +82,9 @@ const Recipe = props => {
                   escapeHtml={false}
                   className="Recipe-abstract"
                 />
-                <Imgix
-                  alt={recipe.title}
-                  src={recipe.coverImage.url}
-                  sizes="100vw"
+                <Image
                   className="Recipe-cover"
+                  data={recipe.coverImage.responsiveImage}
                 />
                 <div className="Recipe-box">
                   <h5 className="Recipe-box-title">Ingredients</h5>
@@ -74,11 +95,9 @@ const Recipe = props => {
                     return (
                       <div key={block.id} className="Recipe-flag">
                         <div className="Recipe-flag-number">{i + 1}</div>
-                        <Imgix
-                          alt={block.image.alt}
-                          src={block.image.url}
-                          sizes="50vw"
+                        <Image
                           className="Recipe-flag-image"
+                          data={block.image.responsiveImage}
                         />
                         <Markdown
                           source={block.text}
