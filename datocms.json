@@ -1,0 +1,8 @@
+{
+  "name": "React Apollo",
+  "previewImage": "https://raw.githubusercontent.com/datocms/react-apollo-demo/master/screenshot.png",
+  "templateId": "13808",
+  "deploymentType": "netlify",
+  "netlifyBuildCommand": "yarn build",
+  "netlifyBuildDirectory": "build"
+}
