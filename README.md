@@ -48,4 +48,4 @@ Read more about union types in Apollo [here](https://www.apollographql.com/docs/
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Apollo documentation can be found [here](https://www.apollographql.com/docs/ios/).
+Apollo documentation can be found [here](https://www.apollographql.com/docs/react/).
